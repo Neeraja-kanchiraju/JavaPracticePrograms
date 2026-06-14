@@ -1,0 +1,19 @@
+package practice.com;
+
+import java.util.Arrays;
+
+//Find the secondlargest element in the array
+public class Main {
+   public static int findSecLar(int []arr){
+       Arrays.sort(arr);
+       int second_Largest=arr[arr.length-2];
+       return second_Largest;
+   }
+    public static void main(String[] args) {
+        int arr[]={1,3,5,33,6,34};
+        int ans=findSecLar(arr);
+        System.out.println(ans);
+    }
+}
+--------------output----------------
+33
