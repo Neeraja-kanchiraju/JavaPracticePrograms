@@ -1,0 +1,25 @@
+package com.practice.example;
+import java.util.Scanner;
+public class PerfectNumber {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("enter a num:");
+        int number = sc.nextInt();
+        int sum = 0;
+        for (int i = 1; i < number; i++) {
+            if (number % i == 0) {
+                sum = sum + i;
+            }
+        }
+
+        if (sum == number){
+            System.out.println("it is a perfect number");
+        }
+        else {
+            System.out.println("it is not perfect number");
+        }
+    }
+}
+--------output---------
+6
+it is a perfect number
