@@ -1,0 +1,276 @@
+package com.practice.hello;
+
+public class Student {
+    private int id;
+    private String name;
+    private String course;
+    private double marks;
+    public Student(int id , String name, String course,double marks){
+        this.id = id;
+        this.name = name;
+        this.course = course;
+        this.marks = marks;
+    }
+    public int getId(){
+        return id;
+    }
+    public String getName(){
+        return name;
+    }
+    public String getcourse(){
+        return course;
+    }
+    public double getMarks(){
+        return marks;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setCourse(String course){
+        this.course = course;
+    }
+    public void setMarks(double marks){
+        this.marks = marks;
+    }
+    public String toString(){
+        return "ID : " + id +
+                "\nName : " + name +
+                "\nCourse : " + course +
+                "\nMarks : " + marks;
+    }
+}
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+
+public class StudentService {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<Student> students = new ArrayList<>();
+
+    //add student//
+    public void addStudent() {
+        System.out.print("enter ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        System.out.print("enter name:");
+        String name = sc.nextLine();
+        System.out.print("enter Course:");
+        String course = sc.nextLine();
+        System.out.print("enter marks:");
+        double marks = sc.nextDouble();
+        students.add(new Student(id, name, course, marks));
+        System.out.println("student added successfully");
+    }
+
+    //view students//
+    public void viewStudents() {
+        if (students.isEmpty()) {
+            System.out.println("no students found");
+            return;
+        }
+        students.forEach(System.out::println);
+    }
+
+    //search student//
+    public void searchStudent() {
+        System.out.print("enter student ID:");
+        int id = sc.nextInt();
+        Student result = students.stream()
+                .filter(s -> s.getId() == id)
+                .findFirst()
+                .orElse(null);
+        if (result != null) {
+            System.out.println(result);
+        } else {
+            System.out.println("student not found");
+        }
+    }
+
+    //update student//
+    public void updateStudent() {
+        System.out.print("enter student ID:");
+        int id = sc.nextInt();
+        sc.nextLine();
+        for (Student s : students) {
+            if (s.getId() == id) {
+                System.out.print("enter New Name :");
+                s.setName(sc.nextLine());
+                System.out.print("enter New Course:");
+                s.setCourse(sc.nextLine());
+                System.out.print("enter New Marks:");
+                s.setMarks(sc.nextDouble());
+                System.out.println("student updated successfully");
+                return;
+            }
+        }
+        System.out.println("student not found");
+    }
+
+    //delete student//
+    public void deleteStudent() {
+        System.out.print("enter student ID:");
+        int id = sc.nextInt();
+        boolean removed = students.removeIf(s -> s.getId() == id);
+        if (removed) {
+            System.out.println("student deleted sucessfully");
+        } else {
+            System.out.println("student not found");
+        }
+    }
+}
+
+
+
+
+package com.practice.hello;
+
+import java.util.Scanner;
+public class Test {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StudentService service = new StudentService();
+        while(true){
+            System.out.println("\n student management system");
+            System.out.println("1.Add student");
+            System.out.println("2.View students");
+            System.out.println("3.Search student");
+            System.out.println("4.Update student");
+            System.out.println("5.Delete student");
+            System.out.println("6.Exit");
+            System.out.print("enter choice:");
+            int choice = sc.nextInt();
+            switch(choice){
+                case 1:
+                    service.addStudent();
+                    break;
+                case 2:
+                    service.viewStudents();
+                    break;
+                case 3:
+                    service.searchStudent();
+                    break;
+                case 4:
+                    service.updateStudent();
+                    break;
+                case 5:
+                    service.deleteStudent();
+                    break;
+                case 6:
+                    System.out.println("thank you");
+                    System.exit(0);
+                default:
+                    System.out.println("invalid choice");
+
+
+            }
+        }
+    }
+}
+===========output===========
+  "C:\Program Files\Java\jdk-17\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.3\lib\idea_rt.jar=61242" -Dfile.encoding=UTF-8 -classpath C:\Users\Neera\OneDrive\Documents\java8featuresdailypractice\Project\out\production\Project com.practice.hello.Test
+
+ student management system
+1.Add student
+2.View students
+3.Search student
+4.Update student
+5.Delete student
+6.Exit
+enter choice:1
+enter ID: 101
+enter name:Neeraja
+enter Course:cse
+enter marks:85
+student added successfully
+
+ student management system
+1.Add student
+2.View students
+3.Search student
+4.Update student
+5.Delete student
+6.Exit
+enter choice:2
+ID : 101
+Name : Neeraja
+Course : cse
+Marks : 85.0
+
+ student management system
+1.Add student
+2.View students
+3.Search student
+4.Update student
+5.Delete student
+6.Exit
+enter choice:3
+enter student ID:101
+ID : 101
+Name : Neeraja
+Course : cse
+Marks : 85.0
+
+ student management system
+1.Add student
+2.View students
+3.Search student
+4.Update student
+5.Delete student
+6.Exit
+enter choice:4
+enter student ID:101
+enter New Name :Venu
+enter New Course:ece
+enter New Marks:80
+student updated successfully
+
+ student management system
+1.Add student
+2.View students
+3.Search student
+4.Update student
+5.Delete student
+6.Exit
+enter choice:5
+enter student ID:101
+student deleted sucessfully
+
+ student management system
+1.Add student
+2.View students
+3.Search student
+4.Update student
+5.Delete student
+6.Exit
+enter choice:6
+thank you
+
+Process finished with exit code 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
