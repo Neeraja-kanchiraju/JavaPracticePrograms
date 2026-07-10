@@ -1,0 +1,148 @@
+package com.practice.hello;
+
+public class User {
+    private String username;
+    private String password;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getUsername() {
+
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+
+public class UserService {
+    List<User> users = new ArrayList<>();
+
+    //=========REGISTER========//
+    public void register(String username, String password) {
+        users.add(new User(username, password));
+        System.out.println("registration successful:");
+    }
+
+    //=========LOGIN===========//
+    public boolean login(String username, String password) {
+        Optional<User> user = users.stream().filter(u -> u.getUsername().equals(username)
+                && u.getPassword().equals(password)).findFirst();
+        return user.isPresent();
+    }
+
+    //=========DISPLAYUSERS=====//
+    public void displayusers() {
+        users.forEach(u -> System.out.println(u.getUsername()));
+    }
+}
+
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        UserService service = new UserService();
+        int choice = 0;
+        while (choice != 4) {
+            System.out.println("======LOGIN SYSTEM=======");
+            System.out.println("1. Register");
+            System.out.println("2. Login ");
+            System.out.println("3.Display Users ");
+            System.out.println("4. Exit ");
+            System.out.print("Enter choice : ");
+              choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.print("username : ");
+                    String username = sc.nextLine();
+                    System.out.print("password :");
+                    String password = sc.nextLine();
+                    service.register(username, password);
+                    break;
+                case 2:
+                    System.out.print("username :");
+                    String user = sc.nextLine();
+                    System.out.print("password :");
+                    String pass = sc.nextLine();
+                    if (service.login(user, pass)) {
+                        System.out.println("login successfull");
+                    } else {
+                        System.out.println("Invalid username or password");
+                    }
+                    break;
+                case 3:
+                    service.displayusers();
+                    break;
+                case 4:
+                    System.out.println("Thank you");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }
+    }
+}
+===========output==========
+"C:\Program Files\Java\jdk-17\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.3\lib\idea_rt.jar=52278" -Dfile.encoding=UTF-8 -classpath C:\Users\Neera\OneDrive\Documents\java8featuresdailypractice\untitled\out\production\untitled com.practice.hello.Main
+======LOGIN SYSTEM=======
+1. Register
+2. Login 
+3.Display Users 
+4. Exit 
+Enter choice : 1
+username : Neeraja
+password :1234
+registration successful:
+======LOGIN SYSTEM=======
+1. Register
+2. Login 
+3.Display Users 
+4. Exit 
+Enter choice : 2
+username :Neeraja
+password :1234
+login successfull
+======LOGIN SYSTEM=======
+1. Register
+2. Login 
+3.Display Users 
+4. Exit 
+Enter choice : 3
+Neeraja
+======LOGIN SYSTEM=======
+1. Register
+2. Login 
+3.Display Users 
+4. Exit 
+Enter choice : 4
+Thank you
+
+Process finished with exit code 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
