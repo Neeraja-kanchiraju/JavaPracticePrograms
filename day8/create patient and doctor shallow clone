@@ -1,0 +1,58 @@
+package com.practice.hai;
+class Doctor {
+    String name;
+
+    Doctor(String name) {
+        this.name = name;
+    }
+}
+public class Patient  implements Cloneable {
+    int id;
+    String name;
+    Doctor doctor;
+
+    Patient(int id, String name, Doctor doctor) {
+        this.id = id;
+        this.name = name;
+        this.doctor = doctor;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+    package com.practice.hai;
+class Doctor {
+    String name;
+
+    Doctor(String name) {
+        this.name = name;
+    }
+}
+public class Patient  implements Cloneable {
+    int id;
+    String name;
+    Doctor doctor;
+
+    Patient(int id, String name, Doctor doctor) {
+        this.id = id;
+        this.name = name;
+        this.doctor = doctor;
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+}
+        =========output========
+        venu
+        venu
+
+
+
+
+
+
+
+
+
