@@ -1,0 +1,40 @@
+package com.practice.hai;
+
+public class Project {
+    String projectname;
+    Project(String projectname){
+        this.projectname = projectname;
+    }
+}
+class Employee implements Cloneable{
+    int empid;
+    String empname;
+    double salary;
+    Project project;
+    Employee(int empid,String empname,double salary,Project project){
+        this.empid = empid;
+        this.empname = empname;
+        this.salary = salary;
+        this.project = project;
+
+    }
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+}
+package com.practice.hai;
+
+public class Test1 {
+    public static void main(String[] args) throws Exception {
+        Project p1 = new Project("Student management system");
+        Employee e1 = new Employee(121,"neeraja",50000,p1);
+        Employee e2 = (Employee) e1.clone();
+        e2.project.projectname = "library management system";
+        System.out.println(e1. project.projectname);
+        System.out.println(e2.project.projectname);
+
+    }
+}
+=========output===========
+      library management system
+      library management system
